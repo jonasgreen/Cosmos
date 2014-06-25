@@ -31,10 +31,35 @@ public class Cosmos implements EntryPoint{
 
         System.out.println("CSS");
         System.out.println(DemoSetup.SMALL_COMPONENT.render());
-        StyleInjector.inject(DemoSetup.SMALL_COMPONENT.render());
+        System.out.println("Length: "+getDocumentStyleSheet());
+        StyleInjector.injectAtEnd(DemoSetup.SMALL_COMPONENT.render(), true);
+        System.out.println("Length: "+getDocumentStyleSheet());
+        setCssClass(0,1, ".classOne { padding: 30px; background-color: blue; }");
+        cssClass(0,1,"");
+    }
 
-  	}
 
 
+    /*var styleSheet = document.styleSheets[idx];
+    var cssRules = styleSheet.rules ? styleSheet.rules : styleSheet.cssRules;
+    for (var i = 0; i < cssRules.length; ++i) {
+        if(cssRules[i].selectorText == selector) return true;
+    }
+*/
+
+
+
+    private static native int getDocumentStyleSheet() /*-{
+       return $doc.styleSheets.length;
+    }-*/;
+
+
+    private static native void setCssClass(int styleSheetIndex, int cssIndex, String css) /*-{
+       $doc.styleSheets[styleSheetIndex].deleteRule(0);
+    }-*/;
+
+    private static native void cssClass(int styleSheetIndex, int cssIndex, String css) /*-{
+       $doc.styleSheets[styleSheetIndex].cssRules[0].style.cssText='padding: 130px; color: black;';
+    }-*/;
 
 }

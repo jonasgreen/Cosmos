@@ -19,9 +19,8 @@ public class DemoSetup {
             .padding(8, Style.Unit.PX);
 
 
-    public static CssClass SMALL_COMPONENT = new CssClass("smallComponent")
-            .extend(DEFAULT_COMPONENT)
-            .add(NORMAL_FONT_SIZE.divideBy(2));
+    public static CssClass SMALL_COMPONENT = new CssClass("body")
+            .add(NORMAL_FONT_SIZE);
 
 
     public static CssClass LARGE_COMPONENT = new CssClass("largeComponent")
