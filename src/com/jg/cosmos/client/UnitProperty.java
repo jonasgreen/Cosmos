@@ -2,7 +2,6 @@ package com.jg.cosmos.client;
 
 
 import com.google.gwt.dom.client.Style;
-import com.jg.cosmos.client.demo.CssName;
 
 /**
  *
@@ -13,7 +12,7 @@ public class UnitProperty extends CssProperty {
     private Style.Unit unit;
 
     public UnitProperty(CssName propertyName, double value, Style.Unit unit) {
-        super(propertyName.getName());
+        super(propertyName.getCssName());
         this.unit = unit;
         this.value = value;
     }

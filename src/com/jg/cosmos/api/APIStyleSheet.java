@@ -5,7 +5,7 @@ import com.google.gwt.dom.client.Style;
 /**
  *
  */
-public class StyleSheet {
+public class APIStyleSheet {
 
     Prop primaryColor = new Prop();
 

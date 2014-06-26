@@ -1,7 +1,6 @@
 package com.jg.cosmos.client;
 
 import com.google.gwt.dom.client.Style;
-import com.jg.cosmos.client.demo.CssName;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,21 +8,23 @@ import java.util.List;
 /**
  *
  */
-public class CssClass implements CssItem, CssPropertyListener {
+public class Selector implements CssItem, CssPropertyListener {
 
+    private final StyleSheet styleSheet;
     private final String className;
     private List<CssItem> items = new ArrayList<CssItem>();
 
-    public CssClass(String className) {
+    public Selector(StyleSheet styleSheet, String className){
+        this.styleSheet = styleSheet;
         this.className = className;
     }
 
-    public CssClass fontSize(double value, Style.Unit unit){
+    public Selector fontSize(double value, Style.Unit unit){
         createUnitProperty(CssName.FONT_SIZE, value, unit);
         return this;
     }
 
-    public CssClass extend(CssClass toExtend){
+    public Selector extend(Selector toExtend){
         for (CssProperty p : toExtend.getAllProperties()) {
             items.add(p);
         }
@@ -37,13 +38,13 @@ public class CssClass implements CssItem, CssPropertyListener {
         return p;
     }
 
-    public CssClass add(CssProperty p){
+    public Selector add(CssProperty p){
         p.addListener(this);
         items.add(p);
         return this;
     }
 
-    public CssClass add(UnitPropertyFunction f){
+    public Selector add(UnitPropertyFunction f){
         f.getProperty().addListener(this);
         items.add(f);
         return this;
@@ -92,19 +93,18 @@ public class CssClass implements CssItem, CssPropertyListener {
         return className;
     }
 
+    public StyleSheet getStyleSheet() {
+        return styleSheet;
+    }
 
+// UTILITY METHODS FOR ADDING DIFFERENT PROPERTIES
 
-
-
-
-    // UTILITY METHODS FOR ADDING DIFFERENT PROPERTIES
-
-    public CssClass padding(double value, Style.Unit unit){
+    public Selector padding(double value, Style.Unit unit){
         createUnitProperty(CssName.PADDING, value, unit);
         return this;
     }
 
-    public CssClass padding(double topAndBottom, double rightAndLeft, Style.Unit unit){
+    public Selector padding(double topAndBottom, double rightAndLeft, Style.Unit unit){
         createUnitProperty(CssName.PADDING_TOP, topAndBottom, unit);
         createUnitProperty(CssName.PADDING_BOTTOM, topAndBottom, unit);
         createUnitProperty(CssName.PADDING_RIGHT, rightAndLeft, unit);
@@ -112,7 +112,7 @@ public class CssClass implements CssItem, CssPropertyListener {
         return this;
     }
 
-    public CssClass padding(double top, double rightAndLeft, double bottom, Style.Unit unit){
+    public Selector padding(double top, double rightAndLeft, double bottom, Style.Unit unit){
         createUnitProperty(CssName.PADDING_TOP, top, unit);
         createUnitProperty(CssName.PADDING_RIGHT, rightAndLeft, unit);
         createUnitProperty(CssName.PADDING_LEFT, rightAndLeft, unit);
@@ -120,7 +120,7 @@ public class CssClass implements CssItem, CssPropertyListener {
         return this;
     }
 
-    public CssClass padding(double top, double right, double bottom, double left, Style.Unit unit){
+    public Selector padding(double top, double right, double bottom, double left, Style.Unit unit){
         createUnitProperty(CssName.PADDING_TOP, top, unit);
         createUnitProperty(CssName.PADDING_RIGHT, right, unit);
         createUnitProperty(CssName.PADDING_BOTTOM, bottom, unit);
@@ -128,4 +128,8 @@ public class CssClass implements CssItem, CssPropertyListener {
         return this;
     }
 
+    public Selector backgroundColor(String grey) {
+
+        return null;
+    }
 }
