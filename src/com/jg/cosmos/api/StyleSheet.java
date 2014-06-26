@@ -17,8 +17,7 @@ public class StyleSheet {
             .fontSize(12, Style.Unit.PX)
             .add("font-style: 12px;")
             .add(primaryColor)
-            .add(
-                    new Hover(padding(10, Style.Unit.PX)));
+            .add(largeComponentHover);
 
 
     public Selector SMALL_COMPONENT = createSelector(".small_component",
