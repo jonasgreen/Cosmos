@@ -1,31 +1,26 @@
 package com.jg.cosmos.client;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  */
-public abstract class StyleSheet {
+public class StyleSheet {
 
-    private String name;
-    private List<Selector> selectors = new ArrayList<Selector>();
+    //Set when added to CssCosmos
+    private NativeStyleSheet sheet;
+
+    private final String name;
 
     public StyleSheet(String name) {
         this.name = name;
-        CssCosmos.get().createStyleSheet(this);
     }
 
-    public String getStyleSheetName() {
+
+    public String getName() {
         return name;
     }
 
-
-    protected Selector createSelector(String name){
-        //todo - validate global use of selector name
-        Selector s = new Selector(this, name);
-        selectors.add(s);
-        return s;
+    void setNativeStyleSheet(NativeStyleSheet styleSheet) {
+        this.sheet = styleSheet;
     }
 }

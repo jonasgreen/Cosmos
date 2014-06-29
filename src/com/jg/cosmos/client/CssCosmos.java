@@ -21,23 +21,36 @@ public class CssCosmos {
     }
 
 
-    void createStyleSheet(StyleSheet sheet){
-        if(styleSheets.get(sheet.getStyleSheetName()) != null){
-            throw new RuntimeException("A stylesheet with name: "+sheet.getStyleSheetName() + " already exist.");
+    public <T extends StyleSheet> T add(T sheet){
+      if(styleSheets.get(sheet.getName()) != null){
+            throw new RuntimeException("A stylesheet with name: "+sheet.getName() + " already exist.");
         }
-        nCreateStyleSheet(sheet.getStyleSheetName());
-
-        styleSheets.put(sheet.getStyleSheetName(), sheet);
+        styleSheets.put(sheet.getName(), sheet);
+        sheet.setNativeStyleSheet(createNativeStyleSheet(sheet.getName()));
+        return sheet;
     }
 
-    private static native void nCreateStyleSheet(String name) /*-{
-        var cssNode = document.createElement('style');
+
+    static native NativeStyleSheet createNativeStyleSheet(String name) /*-{
+        var cssNode = $doc.createElement('style');
         cssNode.type = 'text/css';
         cssNode.rel = 'stylesheet';
         cssNode.media = 'screen';
         cssNode.title = name;
-
         $doc.getElementsByTagName("head")[0].appendChild(cssNode);
+        return $doc.styleSheets[$doc.styleSheets.length-1];
     }-*/;
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

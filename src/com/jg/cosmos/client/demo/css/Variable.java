@@ -13,4 +13,6 @@ public class Variable {
     public static UnitProperty SMALL_FONT_SIZE = new UnitProperty(CssName.FONT_SIZE, 10, Style.Unit.PX);
     public static UnitProperty LARGE_FONT_SIZE = new UnitProperty(CssName.FONT_SIZE, 18, Style.Unit.PX);
 
+
+
 }

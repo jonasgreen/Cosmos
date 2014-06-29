@@ -9,23 +9,23 @@ import java.util.List;
 /**
  *
  */
-public class Selector implements CssItem, CssPropertyListener {
+public class SelectorObject implements CssItem, CssPropertyListener {
 
     private Element element;
     private NativeStyleSheet nativeStyleSheet;
     private final String className;
     private List<CssItem> items = new ArrayList<CssItem>();
 
-    public Selector(String className){
+    public SelectorObject(String className){
         this.className = className;
     }
 
-    public Selector fontSize(double value, Style.Unit unit){
+    public SelectorObject fontSize(double value, Style.Unit unit){
         createUnitProperty(CssName.FONT_SIZE, value, unit);
         return this;
     }
 
-    public Selector extend(Selector toExtend){
+    public SelectorObject extend(SelectorObject toExtend){
         for (CssProperty p : toExtend.getAllProperties()) {
             items.add(p);
         }
@@ -39,17 +39,27 @@ public class Selector implements CssItem, CssPropertyListener {
         return p;
     }
 
-    public Selector add(CssProperty p){
+    public SelectorObject add(CssProperty p){
         p.addListener(this);
         items.add(p);
         return this;
     }
 
-    public Selector add(UnitPropertyFunction f){
+    public SelectorObject add(UnitPropertyFunction f){
         f.getProperty().addListener(this);
         items.add(f);
         return this;
     }
+
+
+    private static native Element nCreateSelector(String name) /*-{
+        var cssNode = document.createElement('CSSStyle');
+        cssNode.type = 'text/css';
+        cssNode.rel = 'stylesheet';
+        cssNode.media = 'screen';
+        cssNode.title = name;
+        return cssNode;
+    }-*/;
 
 
     @Override
@@ -100,12 +110,12 @@ public class Selector implements CssItem, CssPropertyListener {
 
 // UTILITY METHODS FOR ADDING DIFFERENT PROPERTIES
 
-    public Selector padding(double value, Style.Unit unit){
+    public SelectorObject padding(double value, Style.Unit unit){
         createUnitProperty(CssName.PADDING, value, unit);
         return this;
     }
 
-    public Selector padding(double topAndBottom, double rightAndLeft, Style.Unit unit){
+    public SelectorObject padding(double topAndBottom, double rightAndLeft, Style.Unit unit){
         createUnitProperty(CssName.PADDING_TOP, topAndBottom, unit);
         createUnitProperty(CssName.PADDING_BOTTOM, topAndBottom, unit);
         createUnitProperty(CssName.PADDING_RIGHT, rightAndLeft, unit);
@@ -113,7 +123,7 @@ public class Selector implements CssItem, CssPropertyListener {
         return this;
     }
 
-    public Selector padding(double top, double rightAndLeft, double bottom, Style.Unit unit){
+    public SelectorObject padding(double top, double rightAndLeft, double bottom, Style.Unit unit){
         createUnitProperty(CssName.PADDING_TOP, top, unit);
         createUnitProperty(CssName.PADDING_RIGHT, rightAndLeft, unit);
         createUnitProperty(CssName.PADDING_LEFT, rightAndLeft, unit);
@@ -121,7 +131,7 @@ public class Selector implements CssItem, CssPropertyListener {
         return this;
     }
 
-    public Selector padding(double top, double right, double bottom, double left, Style.Unit unit){
+    public SelectorObject padding(double top, double right, double bottom, double left, Style.Unit unit){
         createUnitProperty(CssName.PADDING_TOP, top, unit);
         createUnitProperty(CssName.PADDING_RIGHT, right, unit);
         createUnitProperty(CssName.PADDING_BOTTOM, bottom, unit);
