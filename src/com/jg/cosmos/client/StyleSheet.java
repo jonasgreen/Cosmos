@@ -7,9 +7,7 @@ import java.util.List;
 /**
  *
  */
-public class StyleSheet {
-
-
+public class StyleSheet extends CssStyle{
 
 
     //Set when added to CssCosmos - indicates stylesheet is in the dom
@@ -18,22 +16,17 @@ public class StyleSheet {
     private List<Selector> selectors = new ArrayList<Selector>();
 
 
-    private final String name;
 
-    public StyleSheet(String name) {
-        this.name = name;
+    public StyleSheet() {
     }
 
 
-    public String getName() {
-        return name;
-    }
 
     void setNativeStyleSheet(NativeStyleSheet styleSheet) {
         this.nativeSheet = styleSheet;
     }
 
-    protected Selector createSelector(String name){
+    protected Selector classSelector(String name, CssProperty ... properties){
         Selector sel = new Selector(name);
         selectors.add(sel);
 

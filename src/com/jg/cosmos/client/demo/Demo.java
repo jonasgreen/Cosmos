@@ -1,7 +1,11 @@
 package com.jg.cosmos.client.demo;
 
 
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlowPanel;
+import com.jg.cosmos.client.CssCosmos;
+import com.jg.cosmos.client.demo.css.ButtonStyleSheet;
+import com.jg.cosmos.client.demo.css.PageStyleSheet;
 
 /**
  *
@@ -9,10 +13,12 @@ import com.google.gwt.user.client.ui.FlowPanel;
 public class Demo {
 
     public void run(){
-        System.out.println("wuhuhhuu");
 
-        StyleSheets.loadStyleSheets();
-        System.out.println("winiiii");
+        CssCosmos.get().add(PageStyleSheet.get());
+        CssCosmos.get().add(ButtonStyleSheet.get());
+
+
+        CssCosmos.get().loadStyleSheets();
 
 
         FlowPanel f = new FlowPanel();

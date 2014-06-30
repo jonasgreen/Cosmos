@@ -16,7 +16,7 @@ public class Selector implements CssItem, CssPropertyListener {
     private final String className;
     private List<CssItem> items = new ArrayList<CssItem>();
 
-    public Selector(String className){
+    public Selector(String className, CssProperty ... ps){
         this.className = className;
     }
 
