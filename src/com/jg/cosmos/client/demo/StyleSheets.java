@@ -7,9 +7,9 @@ import com.jg.cosmos.client.demo.css.PageStyleSheet;
 /**
  *
  */
-public class Css {
+public class StyleSheets {
 
-    public static ComponentStyleSheet componentStyleSheet = new ComponentStyleSheet();
+    public static ComponentStyleSheet components = new ComponentStyleSheet();
     public static PageStyleSheet pageStyleSheet = new PageStyleSheet();
 
     public static void loadStyleSheets(){

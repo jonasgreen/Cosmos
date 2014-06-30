@@ -1,8 +1,6 @@
 package com.jg.cosmos.client.demo;
 
 
-import com.google.gwt.dom.client.Document;
-import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.FlowPanel;
 
 /**
@@ -13,7 +11,7 @@ public class Demo {
     public void run(){
         System.out.println("wuhuhhuu");
 
-        Css.loadStyleSheets();
+        StyleSheets.loadStyleSheets();
         System.out.println("winiiii");
 
 
