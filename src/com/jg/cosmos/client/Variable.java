@@ -11,7 +11,7 @@ public class Variable {
 
     private final CssProperty property;
 
-    public Variable(CssProperty property) {
+    public Variable(String name, CssProperty property) {
         this.property = property;
     }
 }

@@ -1,10 +1,7 @@
 package com.jg.cosmos.client.demo.css;
 
 import com.google.gwt.dom.client.Style;
-import com.jg.cosmos.client.Group;
-import com.jg.cosmos.client.Selector;
-import com.jg.cosmos.client.StyleSheet;
-import com.jg.cosmos.client.Variable;
+import com.jg.cosmos.client.*;
 
 /**
  *
@@ -15,17 +12,22 @@ public class PageStyleSheet extends StyleSheet{
 
 
     //GROUPS
-    public static Group typicalPage = new Group(fontSize(12), padding(2));
+    public static Group typicalPage = new Group(
+            fontSize(12),
+            padding(2));
 
 
     //VARIABLES
-    public static Variable fontSize = new Variable(fontSize(12));
+    public static UnitProperty smallFontSize = fontSize(10);
+
+    //VARIABLES with names - to use with cosmos editor.
+    public static Variable defaultFontSize = new Variable("defaultFontSize", fontSize(12));
 
 
     //CLASSES
     public Selector page_normal = classSelector(".pageNormal",
             padding(20),
-            fontSize(10, Style.Unit.PX));
+            smallFontSize);
 
 
     public static PageStyleSheet get() {
